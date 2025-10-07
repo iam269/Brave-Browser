@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Brave — Clone</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="lion.png" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="tabs" id="tabs">
+      <div class="tab active">New Tab</div>
+      <div class="tab">example.com</div>
+      <button id="newTabBtn" class="new-tab-btn" title="New Tab">+</button>
+    </div>
+    <div class="controls">
+      <button class="btn nav" id="backBtn" title="Back">◀</button>
+      <button class="btn nav" id="forwardBtn" title="Forward">▶</button>
+      <div class="address">
+        <input id="addressInput" placeholder="Search or type a URL" spellcheck="false">
+      </div>
+      <button id="shieldsBtn" class="icon" title="Shields">🛡️</button>
+      <div class="menu-wrapper">
+        <button id="menuBtn" class="icon" title="Menu">☰</button>
+        <div id="menuDropdown" class="dropdown hidden">
+          <button id="menuNewTab">New Tab</button>
+          <button id="menuToggleTheme">Toggle Dark Mode</button>
+        </div>
+      </div>
+      <div class="menu-wrapper">
+        <button id="profileBtn" class="icon" title="Profile">🙂</button>
+        <div id="profileDropdown" class="dropdown hidden">
+          <button class="profile-switch">Profile 1</button>
+          <button class="profile-switch">Profile 2</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="newtab" id="newtab">
+      <div class="brand">
+        <!-- Minimal Brave-like SVG badge -->
+        <svg width="96" height="96" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="g" x1="0" x2="1">
+              <stop offset="0" stop-color="#f7a94a" />
+              <stop offset="1" stop-color="#f18c35" />
+            </linearGradient>
+          </defs>
+          <circle cx="12" cy="12" r="10" fill="url(#g)" />
+          <path d="M7 12c0 3.866 3.134 7 7 7 0 0-2-3-2-5 0-2 2-3 2-5 0-1.5-1.5-3-3-3-3.866 0-7 3.134-7 7z" fill="#fff" opacity="0.95"/>
+        </svg>
+        <h1>Brave — Clone</h1>
+      </div>
+
+      <div class="search">
+        <input id="searchBox" placeholder="Search the web or type a URL" />
+        <button id="searchBtn">Search</button>
+      </div>
+
+      <div class="quick-links">
+        <a href="https://news.ycombinator.com" target="_blank">Hacker News</a>
+        <a href="https://github.com" target="_blank">GitHub</a>
+        <a href="https://duckduckgo.com" target="_blank">DuckDuckGo</a>
+        <a href="https://brave.com" target="_blank">Brave</a>
+      </div>
+
+      <div class="shields-panel hidden" id="shieldsPanel">
+        <h3>Shields</h3>
+        <div class="shield-row">
+          <label>Block ads & trackers</label>
+          <input type="checkbox" id="blockAds" checked />
+        </div>
+        <div class="shield-row">
+          <label>Block scripts</label>
+          <input type="checkbox" id="blockScripts" />
+        </div>
+      </div>
+    </section>
+
+    <section id="pageView" class="page-view hidden">
+      <iframe id="contentFrame" src="about:blank" sandbox="allow-same-origin allow-forms allow-scripts allow-popups" frameborder="0"></iframe>
+    </section>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
