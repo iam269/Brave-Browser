@@ -2,6 +2,7 @@
   const addressInput = document.getElementById('addressInput');
   const searchBox = document.getElementById('searchBox');
   const searchBtn = document.getElementById('searchBtn');
+  const suggestions = document.getElementById('suggestions');
   const newTabBtn = document.getElementById('newTabBtn');
   const tabs = document.getElementById('tabs');
   const newtabSection = document.getElementById('newtab');
@@ -15,6 +16,35 @@
   function isProbablyURL(text){
     // simple heuristic: contains a dot and no spaces -> treat as URL
     return /\S+\.\S+/.test(text) && !/\s/.test(text);
+  }
+
+  function fetchSuggestions(query){
+    if(!query.trim()) {
+      suggestions.classList.add('hidden');
+      return;
+    }
+    fetch(`https://duckduckgo.com/ac/?q=${encodeURIComponent(query)}&type=list`)
+      .then(response => response.json())
+      .then(data => {
+        suggestions.innerHTML = '';
+        if(data && data.length > 0){
+          data.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'suggestion';
+            div.textContent = item.phrase;
+            div.addEventListener('click', () => {
+              searchBox.value = item.phrase;
+              suggestions.classList.add('hidden');
+              navigateTo(item.phrase);
+            });
+            suggestions.appendChild(div);
+          });
+          suggestions.classList.remove('hidden');
+        } else {
+          suggestions.classList.add('hidden');
+        }
+      })
+      .catch(() => suggestions.classList.add('hidden'));
   }
 
   function navigateTo(text){
@@ -40,8 +70,16 @@
     }
   });
 
+  searchBox.addEventListener('input', function(){
+    fetchSuggestions(searchBox.value);
+  });
+
   searchBox.addEventListener('keydown', function(e){
     if(e.key === 'Enter') searchBtn.click();
+  });
+
+  searchBox.addEventListener('blur', function(){
+    setTimeout(() => suggestions.classList.add('hidden'), 150);
   });
 
   searchBtn.addEventListener('click', function(){
