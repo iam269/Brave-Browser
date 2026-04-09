@@ -11,7 +11,7 @@ A simplified clone of the Brave browser interface built using only HTML, CSS, an
 - **Quick Links**: Direct links to popular sites like Hacker News, GitHub, and DuckDuckGo.
 - **Dropdown Menus**: Profile switcher and theme toggle (dark mode).
 
-Live Demo: [https://iam269.github.io/Brave-Browser/](https://iam269.github.io/Brave-Browser/)
+Live Demo: [https://itsiamdev.github.io/Brave-Browser/](https://itsiamdev.github.io/Brave-Browser/)
 
 ## Files
 
